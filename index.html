@@ -7,12 +7,50 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="background-elements">
+        <div class="bubble bubble-1"></div>
+        <div class="bubble bubble-2"></div>
+        <div class="bubble bubble-3"></div>
+    </div>
+
     <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="title">🎮 Number Quest</h1>
+            <p class="tagline">Think, Guess, Win!</p>
+        </div>
+
         <div class="game-card">
-            <h1>Guessing Game</h1>
-            <p class="subtitle">Guess a number between 1 and 100</p>
+            <!-- Difficulty Selector -->
+            <div class="difficulty-section">
+                <label for="difficulty">Select Difficulty:</label>
+                <div class="difficulty-buttons">
+                    <button class="difficulty-btn" data-difficulty="easy" onclick="setDifficulty('easy')">Easy</button>
+                    <button class="difficulty-btn" data-difficulty="medium" onclick="setDifficulty('medium')" style="width: auto;">Medium</button>
+                    <button class="difficulty-btn" data-difficulty="hard" onclick="setDifficulty('hard')">Hard</button>
+                </div>
+            </div>
+
+            <p class="subtitle" id="rangeDisplay">Guess a number between 1 and 100</p>
             
             <div class="game-content">
+                <!-- Stats Row -->
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Attempts</span>
+                        <span id="attempts" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Streak</span>
+                        <span id="streak" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Best</span>
+                        <span id="bestScore" class="stat-value">-</span>
+                    </div>
+                </div>
+
+                <!-- Input Group -->
                 <div class="input-group">
                     <input 
                         type="number" 
@@ -21,21 +59,33 @@
                         min="1" 
                         max="100"
                     >
-                    <button id="guessBtn" onclick="makeGuess()">Guess</button>
+                    <button id="guessBtn" onclick="makeGuess()" class="btn-guess">Guess</button>
                 </div>
 
+                <!-- Feedback Message -->
                 <div id="feedback" class="feedback"></div>
                 
-                <div class="stats">
-                    <div class="stat">
-                        <span class="label">Attempts:</span>
-                        <span id="attempts" class="value">0</span>
-                    </div>
+                <!-- Hint and Progress -->
+                <div class="hint-section">
+                    <button id="hintBtn" onclick="getHint()" class="btn-secondary">💡 Get Hint</button>
+                    <div id="hintsRemaining" class="hints-info"></div>
                 </div>
 
+                <!-- Progress Bar -->
+                <div class="progress-container" id="progressContainer" style="display:none;">
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                    <p id="progressText" class="progress-text"></p>
+                </div>
+
+                <!-- Guess History -->
                 <div id="guessHistory" class="history"></div>
 
-                <button id="resetBtn" onclick="resetGame()" class="reset-btn">Play Again</button>
+                <!-- Buttons -->
+                <div class="button-group">
+                    <button id="resetBtn" onclick="resetGame()" class="reset-btn">Play Again</button>
+                </div>
             </div>
         </div>
     </div>
